@@ -30,7 +30,74 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
+```
+#include <stdio.h>  
+#include <string.h>  
+void vigenereEncrypt(char *text, const char *key) {     
+int textLen = strlen(text);     int keyLen = strlen(key);  
+int j = 0;  
+for (int i = 0; i < textLen; i++) {  
+char c = text[i];  
+erent 
+        if (c >= 'A' && c <= 'Z') {  
+            text[i] = ((c - 'A' + (key[j % keyLen] - 'A')) % 26) + 
+'A';             j++;  
+        } else if (c >= 'a' && c <= 'z') {  
+            text[i] = ((c - 'a' + (key[j % keyLen] - 'A')) % 26) + 
+'a';             j++;  
+        }  
+    }  
+}  
+  
+void vigenereDecrypt(char *text, const char *key) {     
+int textLen = strlen(text);     int keyLen = strlen(key);  
+    int j = 0;  
+  
+    for (int i = 0; i < textLen; i++) {         
+char c = text[i];  
+  
+        if (c >= 'A' && c <= 'Z') {  
+            text[i] = ((c - 'A' - (key[j % keyLen] - 'A') + 26) % 26) + 
+'A';             j++;  
+        } else if (c >= 'a' && c <= 'z') {  
+            text[i] = ((c - 'a' - (key[j % keyLen] - 'A') + 26) % 26) + 'a';             
+j++;  
+        }  
+    }  
+}  
+  
+int main() {     char 
+message[1000];     char 
+key[100];  
+  
+    printf("Enter the message to encrypt: ");     
+fgets(message, sizeof(message), stdin);  
+  
+    size_t len = strlen(message);     if (len 
+> 0 && message[len - 1] == '\n') {         
+message[len - 1] = '\0';  
+    }  
+  
+    printf("Enter the encryption key: ");     
+fgets(key, sizeof(key), stdin);  
+  
+    len = strlen(key);     if (len > 0 
+&& key[len - 1] == '\n') {         
+key[len - 1] = '\0';  
+    }  
+  
+    vigenereEncrypt(message, key);     
+printf("Encrypted Message: %s\n", message);  
+  
+    vigenereDecrypt(message, key);     
+printf("Decrypted Message: %s\n", message);  
+  
+    return 0;  
+}  
+```
 
 ## OUTPUT
+![image](https://github.com/user-attachments/assets/c6c8a9ca-7008-4a1c-9ca4-3d948f177207)
 
 ## RESULT
+The program is executed successfully.
